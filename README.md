@@ -6,6 +6,7 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
 </p>
+## tutorial link i follow : [text](https://medium.com/addweb-engineering/laravel-top-11-restful-api-crud-with-best-practices-in-2024-786f0a228721)
 
 ## About Laravel
 
