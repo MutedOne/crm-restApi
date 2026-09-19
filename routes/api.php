@@ -16,21 +16,22 @@ use App\Http\Controllers\ContactTypeController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\LogoutController;
-Route::post('/login', [LoginController::class, 'login']);
-Route::middleware('auth:sanctum')->group(function () {
-    Route::post('/logout', [LogoutController::class, 'logout']);
-    Route::apiResource('user', UserController::class);
-    Route::apiResource('user-roles', UserRoleController::class);
-    Route::apiResource('user-statuses', UserStatusController::class);
-    Route::apiResource('lead-statuses', LeadStatusController::class);
-    Route::apiResource('lead', LeadController::class);
-    Route::apiResource('property', PropertyController::class);
-    Route::apiResource('property-statuses', PropertyStatusController::class);
-    Route::apiResource('property-types', PropertyTypeController::class);
-    Route::apiResource('property-owners', PropertyOwnerController::class);
-    Route::apiResource('interested-property', InterestedPropertyController::class);
-    Route::apiResource('listing-types', ListingTypeController::class);
-    Route::apiResource('contact-types', ContactTypeController::class);
-    Route::apiResource('contact', ContactController::class);
+Route::prefix('v1')->group(function () {
+    Route::post('/login', [LoginController::class, 'login']);
+    Route::middleware('auth:sanctum')->group(function () {
+        Route::post('/logout', [LogoutController::class, 'logout']);
+        Route::apiResource('user', UserController::class);
+        Route::apiResource('user-roles', UserRoleController::class);
+        Route::apiResource('user-statuses', UserStatusController::class);
+        Route::apiResource('lead-statuses', LeadStatusController::class);
+        Route::apiResource('lead', LeadController::class);
+        Route::apiResource('property', PropertyController::class);
+        Route::apiResource('property-statuses', PropertyStatusController::class);
+        Route::apiResource('property-types', PropertyTypeController::class);
+        Route::apiResource('property-owners', PropertyOwnerController::class);
+        Route::apiResource('interested-property', InterestedPropertyController::class);
+        Route::apiResource('listing-types', ListingTypeController::class);
+        Route::apiResource('contact-types', ContactTypeController::class);
+        Route::apiResource('contact', ContactController::class);
+    });
 });
-
