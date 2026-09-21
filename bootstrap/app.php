@@ -4,8 +4,6 @@ use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Exceptions;
 use Illuminate\Foundation\Configuration\Middleware;
 use Illuminate\Support\Facades\Log;
-use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
-
 return Application::configure(basePath: dirname(__DIR__))
     ->withRouting(
         web: __DIR__.'/../routes/web.php',
@@ -26,30 +24,12 @@ return Application::configure(basePath: dirname(__DIR__))
         });
 
       
-       $exceptions->render(function (\Throwable $e, $request) {
-
-           if ($request->is('api/*')) {
-
-                $status = match (true) {
-                    $e instanceof NotFoundHttpException => 404,
-                    $e instanceof \Illuminate\Validation\ValidationException => 422,
-                    $e instanceof \Illuminate\Auth\AuthenticationException => 401,
-                    $e instanceof \Illuminate\Auth\Access\AuthorizationException => 403,
-                    default => 500,
-                };
-
-                $message = match ($status) {
-                    404 => 'Resource not found.',
-                    422 => 'Validation failed.',
-                    401 => 'Unauthenticated.',
-                    403 => 'Unauthorized.',
-                    default => 'Something went wrong.',
-                };
-
+        $exceptions->render(function (\Throwable $e, $request) {
+            if ($request->is('api/*')) {
                 return response()->json([
                     'success' => false,
-                    'message' => $message,
-                ], $status);
+                    'message' => $e->getMessage(),
+                ], 500);
             }
         });
     })->create();

@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 class Property extends Model
 {
     protected $table = 'properties';
@@ -12,6 +12,7 @@ class Property extends Model
     protected $fillable = [
         'type_id',
         'listing_id',
+        'name',
         'price',
         'address',
         'status_id',
@@ -43,5 +44,9 @@ class Property extends Model
     public function assignedAgent(): BelongsTo
     {
         return $this->belongsTo(User::class, 'assigned_agent_id');
+    }
+      public function interestedProperties(): BelongsToMany
+    {
+        return $this->belongsToMany(Property::class, 'interested_properties');
     }
 }

@@ -13,6 +13,7 @@ return new class extends Migration
             $table->string('email', 50)->unique();
             $table->string('phone', 50)->unique();
             $table->string('username', 50)->unique();
+            $table->string('name', 50)->unique();
             $table->string('password', 75);
             $table->unsignedBigInteger('role_id');
             $table->unsignedBigInteger('status_id');

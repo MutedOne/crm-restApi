@@ -17,7 +17,7 @@ class UserService
         $searchRoleId = $paginationDetails['searchRoleId'] ?? '';
         $searchStatusId = $paginationDetails['searchStatusId'] ?? '';
 
-        return User::query()
+        return User::with(['role', 'status'])
             ->when($searchEmail, function ($query) use ($searchEmail) {
                 $query->where('email', 'LIKE', '%' . $searchEmail . '%');
             })
@@ -71,6 +71,7 @@ class UserService
 
       public function updateUserDetailsById(array $data,string $id)
     {
+        
         try {
             $result = DB::transaction(function () use ($data,$id) {
                   $user = User::findOrFail($id);

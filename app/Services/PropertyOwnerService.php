@@ -13,7 +13,7 @@ class PropertyOwnerService
         $searchPropertyID = $paginationDetails['searchPropertyID'] ?? '';
         $searchContactID = $paginationDetails['searchContactID'] ?? '';
         $searchTypeID = $paginationDetails['searchTypeID'] ?? '';
-        return PropertyOwner::query()
+        return PropertyOwner::with(['contact','property','type'])
             ->when($searchPropertyID, function ($query) use ($searchPropertyID) {
                 $query->where('property_id', $searchPropertyID);
             })

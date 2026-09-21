@@ -18,7 +18,7 @@ class PropertyService
         $searchAssignedAgentID = $paginationDetails['searchAssignedAgentID'] ?? '';
         $searchDescription = $paginationDetails['searchDescription'] ?? '';
 
-        return Property::query()
+        return Property::with(['status','type','assignedAgent','listing','interestedProperties'])
             ->when($searchTypeID, function ($query) use ($searchTypeID) {
                 $query->where('type_id', $searchTypeID);
             })

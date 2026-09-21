@@ -43,7 +43,7 @@ class UserController extends Controller
             'password' => 'required|string|max:50',
             'username' => 'required|string|max:50|unique:users,username',
             'role_id' => 'required|numeric|exists:user_roles,id',
-            'status_id' => 'required|string|max:50|exists:user_statuses,id',
+            'status_id' => 'required|numeric|exists:user_statuses,id',
         ]);
 
          $this->userService->createUser(
@@ -78,7 +78,7 @@ class UserController extends Controller
             'password' => 'sometimes|string|max:50',
             'username' => 'sometimes|string|max:50|unique:users,username',
             'role_id' => 'sometimes|numeric|exists:user_roles,id',
-            'status_id' => 'sometimes|string|max:50|exists:user_statuses,id',
+            'status_id' => 'sometimes|numeric|exists:user_statuses,id',
         ]);
 
         $this->userService->updateUserDetailsById(

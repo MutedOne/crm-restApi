@@ -15,7 +15,7 @@ class LeadService
         $searchStatusId = $paginationDetails['searchStatusId'] ?? '';
         $searchNotes = $paginationDetails['searchNotes'] ?? '';
 
-        return Lead::query()
+        return Lead::with(['contact','status','agent','interestedProperties'])
             ->when($searchAssignedAgentId, function ($query) use ($searchAssignedAgentId) {
                 $query->where('assigned_agent_id', $searchAssignedAgentId);
             })
