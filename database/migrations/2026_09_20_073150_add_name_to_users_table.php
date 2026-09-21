@@ -11,16 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('users', function (Blueprint $table) {
-           $table->string('name')->unique();
-        });
-         Schema::table('properties', function (Blueprint $table) {
-           $table->string('name')->unique();
-        
-        });
+      
         Schema::table('interested_properties', function (Blueprint $table) {
-           $table->string('lead_id')->unique();
-        });
+    $table->unique(['property_id', 'lead_id']);
+});
     }
 
     /**

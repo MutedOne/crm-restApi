@@ -17,6 +17,7 @@ return new class extends Migration
             $table->unsignedBigInteger('listing_id');
             $table->decimal('price', 12, 2);
             $table->text('address');
+            $table->string('name', 50);
             $table->unsignedBigInteger('status_id');
             $table->unsignedBigInteger('assigned_agent_id');
             $table->text('description');
