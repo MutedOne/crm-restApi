@@ -33,5 +33,9 @@ class DatabaseSeeder extends Seeder
     Property::factory()->count(50)->create();
     Lead::factory()->count(50)->create();
     PropertyOwner::factory()->count(20)->create();
+      $this->call([
+            InterestedPropertySeeder::class,
+        ]);
+    
     }
 }
