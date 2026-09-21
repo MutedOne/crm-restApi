@@ -19,6 +19,7 @@ class InterestedPropertyService
             ->when($searchLeadID, function ($query) use ($searchLeadID) {
                 $query->where('lead_id', $searchLeadID);
             })
+              ->latest('id')
             ->paginate(
                 $limit,
                 ['*'],

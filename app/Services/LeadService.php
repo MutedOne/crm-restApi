@@ -28,6 +28,7 @@ class LeadService
             ->when($searchNotes, function ($query) use ($searchNotes) {
                 $query->where('notes', 'LIKE', '%' . $searchNotes . '%');
             })
+              ->latest('id')
             ->paginate(
                 $limit,
                 ['*'],

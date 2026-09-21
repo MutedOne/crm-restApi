@@ -16,6 +16,7 @@ class UserRoleService
             ->when($searchRole, function ($query) use ($searchRole) {
                 $query->where('description', 'LIKE', '%' . $searchRole . '%');
             })
+              ->latest('id')
             ->paginate(
                 $limit,
                 ['*'],

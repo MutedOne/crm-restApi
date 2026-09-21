@@ -40,6 +40,7 @@ class PropertyService
             ->when($searchDescription, function ($query) use ($searchDescription) {
                 $query->where('description', 'LIKE', '%' . $searchDescription . '%');
             })
+              ->latest('id')
             ->paginate(
                 $limit,
                 ['*'],

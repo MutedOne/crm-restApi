@@ -16,6 +16,7 @@ class LeadStatusService
             ->when($searchStatus, function ($query) use ($searchStatus) {
                 $query->where('description', 'LIKE', '%' . $searchStatus . '%');
             })
+              ->latest('id')
             ->paginate(
                 $limit,
                 ['*'],

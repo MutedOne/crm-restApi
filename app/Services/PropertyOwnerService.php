@@ -23,6 +23,7 @@ class PropertyOwnerService
             ->when($searchTypeID, function ($query) use ($searchTypeID) {
                 $query->where('type_id', $searchTypeID);
             })
+              ->latest('id')
             ->paginate(
                 $limit,
                 ['*'],

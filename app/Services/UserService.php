@@ -33,6 +33,7 @@ class UserService
             ->when($searchStatusId, function ($query) use ($searchStatusId) {
                 $query->where('status_id', $searchStatusId);
             })
+              ->latest('id')
             ->paginate(
                 $limit,
                 ['*'],

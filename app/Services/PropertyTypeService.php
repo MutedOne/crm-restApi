@@ -16,6 +16,7 @@ class PropertyTypeService
             ->when($searchType, function ($query) use ($searchType) {
                 $query->where('description', 'LIKE', '%' . $searchType . '%');
             })
+              ->latest('id')
             ->paginate(
                 $limit,
                 ['*'],
