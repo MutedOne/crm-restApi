@@ -12,7 +12,7 @@ class InterestedPropertyService
         $page = $paginationDetails['page'];
         $searchPropertyID = $paginationDetails['searchPropertyID'] ?? '';
         $searchLeadID = $paginationDetails['searchLeadID'] ?? '';
-        return InterestedProperty::with(['property','lead'])
+        return InterestedProperty::with(['property','lead.contact'])
             ->when($searchPropertyID, function ($query) use ($searchPropertyID) {
                 $query->where('property_id', $searchPropertyID);
             })

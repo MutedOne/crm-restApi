@@ -17,6 +17,7 @@ class PropertyService
         $searchStatusID = $paginationDetails['searchStatusID'] ?? '';
         $searchAssignedAgentID = $paginationDetails['searchAssignedAgentID'] ?? '';
         $searchDescription = $paginationDetails['searchDescription'] ?? '';
+        $searchName = $paginationDetails['searchName'] ?? '';
 
         return Property::with(['status','type','assignedAgent','listing','interestedProperties'])
             ->when($searchTypeID, function ($query) use ($searchTypeID) {
@@ -39,6 +40,9 @@ class PropertyService
             })
             ->when($searchDescription, function ($query) use ($searchDescription) {
                 $query->where('description', 'LIKE', '%' . $searchDescription . '%');
+            })
+             ->when($searchName, function ($query) use ($searchName) {
+                $query->where('name', 'LIKE', '%' . $searchName . '%');
             })
               ->latest('id')
             ->paginate(

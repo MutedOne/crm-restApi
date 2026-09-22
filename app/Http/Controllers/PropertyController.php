@@ -18,6 +18,7 @@ class PropertyController extends Controller
     public function index(Request $request)
     {
         $request->validate([
+            'searchName' => 'sometimes|string',
             'searchTypeID' => 'sometimes|numeric',
             'searchListingID' => 'sometimes|numeric',
             'searchPrice' => 'sometimes|numeric',
